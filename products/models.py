@@ -21,7 +21,7 @@ class Product(models.Model):
     price = models.IntegerField(_('Price'),default=1)
     tags = TaggableManager()
     brand = models.ForeignKey('Brand',verbose_name=_('Brand'), related_name='product_brand',on_delete=models.SET_NULL,null=True,blank=True)
-    categury = models.ForeignKey('Category',verbose_name=_('Category'), related_name='product_category',on_delete=models.SET_NULL,null=True,blank=True)
+    category = models.ForeignKey('Category',verbose_name=_('Category'), related_name='product_category',on_delete=models.SET_NULL,null=True,blank=True)
     vedio = models.URLField(null=True,blank=True)
 
     def __str__(self) -> str:
