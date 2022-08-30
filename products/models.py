@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.mime import image
 from django.utils import timezone
 from django.db import models
 from django.utils.translation import gettext as _
@@ -19,10 +20,12 @@ class Product(models.Model):
     desc = models.TextField(_('Description'),max_length=10000)
     flag = models.CharField(_('Flag'), max_length=10, choices=PRODUCT_FLAG)
     price = models.IntegerField(_('Price'),default=1)
+    image = models.ImageField(_('Image'),upload_to='prodect-image/%y/%m/%d')
     tags = TaggableManager()
     brand = models.ForeignKey('Brand',verbose_name=_('Brand'), related_name='product_brand',on_delete=models.SET_NULL,null=True,blank=True)
     category = models.ForeignKey('Category',verbose_name=_('Category'), related_name='product_category',on_delete=models.SET_NULL,null=True,blank=True)
     vedio = models.URLField(null=True,blank=True)
+
 
     def __str__(self) -> str:
         return self.name
